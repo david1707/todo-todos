@@ -2,13 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-// Create
-router.post("/", (req, res, next) => {
-  //TODO Create new user
-  // Creates a new User
-  res.json({ data: "User created" });
-});
-
 // Profile
 router.get("/profile", (req, res, next) => {
   //TODO Just return the own user stored on req.user. No other users may be requested

@@ -21,7 +21,6 @@ router.patch("/:id", (req, res, next) => {
   // TODO Update :id Todo
   // Updates a Todo
   const id = req.params.id;
-  console.log(id)
 
   res.json({ data: { id: id, name: `Todo list #${id}`, todos: [] } });
 });
