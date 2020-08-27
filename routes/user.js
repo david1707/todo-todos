@@ -56,10 +56,10 @@ router.get("/own-todos", (req, res, next) => {
   });
 });
 
-router.post("/create", (req, res, next) => {
-  // TODO
+// router.post("/create", (req, res, next) => {
+//   // TODO
 
-  res.json({ data: "" });
-});
+//   res.json({ data: "" });
+// });
 
 module.exports = router;
