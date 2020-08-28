@@ -2,11 +2,23 @@ const bcrypt = require("bcrypt");
 
 const User = require("../models/user");
 
-exports.login = (req, res, next) => {
-  //TODO Lets the user login with email and password
+exports.login = async (req, res, next) => {
   // Confirms user login and returns a JWT
-  const { email, password } = req.body;
 
+  // Checks if user with email exists
+  const { email, password } = req.body;
+  const user = await User.findOne({ email: email });
+
+  if (!user) {
+    return res.status(404).json({ error: "Email not found." });
+  }
+
+  // Checks if password is correct
+  const passwordIsCorrect = await bcrypt.compare(password, user.password);
+
+  if (!passwordIsCorrect) {
+    return res.status(401).json({ error: "Password does not match." });
+  }
   res.json({ data: { email, password } });
 };
 
