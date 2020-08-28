@@ -33,12 +33,6 @@ exports.login = async (req, res, next) => {
   res.json({ token: token });
 };
 
-exports.logout = (req, res, next) => {
-  // TODO Logs out the current user
-  // Logout user from the API, removing the JWT token
-  res.json({ data: "User logout" });
-};
-
 exports.signIn = async (req, res, next) => {
   // Creates a new User
 
@@ -52,7 +46,6 @@ exports.signIn = async (req, res, next) => {
   }
 
   // Hash the password and then create an user
-
   const hashedPassword = await bcrypt.hash(password, 12);
 
   const user = new User({
