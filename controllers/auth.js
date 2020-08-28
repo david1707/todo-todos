@@ -1,8 +1,9 @@
 exports.login = (req, res, next) => {
   //TODO Lets the user login with email and password
   // Confirms user login and returns a JWT
-  console.log(req.body)
-  res.json({ data: "User logged in" });
+  const { email, password } = req.body;
+
+  res.json({ data: { email, password } });
 };
 
 exports.logout = (req, res, next) => {
