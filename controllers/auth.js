@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
 
@@ -19,7 +20,17 @@ exports.login = async (req, res, next) => {
   if (!passwordIsCorrect) {
     return res.status(401).json({ error: "Password does not match." });
   }
-  res.json({ data: { email, password } });
+
+  // Create JWT
+  const token = jwt.sign(
+    {
+      email: email,
+      userId: user._id.toString(),
+    },
+    "tokenSecretHash",
+    { expiresIn: "1h" }
+  );
+  res.json({ token: token });
 };
 
 exports.logout = (req, res, next) => {
